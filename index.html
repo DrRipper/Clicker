@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>PoE Clicker</title>
+	<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+	<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="../dist/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+	<link href="./interface.css" rel="stylesheet" type="text/css" />
+
+	<script src="../plugins/jQuery/jQuery-2.1.3.min.js"></script>
+	<script src="../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="../plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+	<script src="../plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
+	<script src="../dist/js/app.min.js" type="text/javascript"></script>
+	<script src="http://api.mathjs.org" type="text/javascript"></script>
+
+	<script type="text/javascript" src="values/mobs.js"></script>
+	<script type="text/javascript" src="values/spells.js"></script>
+	<script type="text/javascript" src="values/weapons.js"></script>
+	<script type="text/javascript" src="values/values.js"></script>
+	<script type="text/javascript" src="jslib/weapon_handler.js"></script>
+	<script type="text/javascript" src="jslib/spell_handler.js"></script>
+	<script type="text/javascript" src="jslib/mob_handler.js"></script>
+	<script type="text/javascript" src="jslib/functions.js"></script>
+	<script type="text/javascript" src="jslib/main.js"></script>
+</head>
+
+<body class="test">
+	<section class="content-header">
+		<div class="bg"></div>
+		<div class="jumbotron">
+			<h1>Click of Exile</h1>
+			<p class="lead">Never stop grinding</p>
+		</div>
+	</section>
+
+	<section class="content">
+
+		<div class="row">
+			<div class="col-md-offset-1 col-md-11">
+				<h3>Informations Personnage</h3>
+			</div>
+
+			<div id="cptExp" class="row">
+				<div class="col-md-offset-1 col-md-2">
+					<label for="compteurExp" type="text">Nombre de points d'exp :</label>
+					<span id="compteurExp" name="compteurExp" />
+				</div>
+			</div>
+
+			<div id="cptCurrencies" class="row">
+				<div class="col-md-offset-1 col-md-2">
+					<div id="wis">
+						<label for="compteurWisdoms" type="text">Wisdoms scrolls :</label>
+						<span id="compteurWisdoms" name="compteurWisdoms" />
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div id="alts">
+						<label for="compteurAlterations" type="text">Alteration orbs :</label>
+						<span id="compteurAlterations" name="compteurAlterations" />
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div id="scraps">
+						<label for="compteurScraps" type="text">Armourer scraps :</label>
+						<span id="compteurScraps" name="compteurScraps" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row" id="gestion_save">
+				<div class="col-md-offset-1">
+					<button id="save_button" type="button" class="btn btn-sm btn-primary">Sauvegarder</button>
+					<button id="load_save" type="button" class="btn btn-sm btn-primary">Charger</button>
+					<button id="delete_save" type="button" class="btn btn-sm btn-primary">Supprimer Sauvegarde</button>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-offset-1 col-md-12">
+					<h3>Combattre !</h3>
+				</div>
+			</div>
+
+			<div class="row col-md-offset-1" id="ExpClick">
+				<button id="previousMob" type="button" class="btn btn-sm btn-primary glyphicon glyphicon-chevron-left disabled"></button>
+				<button id="damagesClicker" type="button" class="btn btn-sm btn-primary">Attaquer</button>
+				<button id="nextMob" type="button" class="btn btn-sm btn-primary glyphicon glyphicon-chevron-right disabled"></button>
+			</div>
+
+			<div class="row" id="infosMobs">
+				<div class="col-md-offset-1 col-md-2">
+					<label for="nomMobCourant" type="text">Mob courant :</label>
+					<span id="nomMobCourant" name="nomMobCourant" />
+				</div>
+				<div class="col-md-2">
+					<label for="hpMobCourant" type="text">HP courants :</label>
+					<span id="hpMobCourant" name="hpMobCourant" />
+				</div>
+				<div class="col-md-2">
+					<label for="damages" type="text"> Dégâts :</label>
+					<span id="damages" name="damages" />
+				</div>
+				<div class="col-md-2">
+					<label for="dps" type="text"> Dégâts des sorts :</label>
+					<span id="dps" name="dps" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-2">
+					<label for="expMobCourant" type="text">Reward EXP :</label>
+					<span id="expMobCourant" name="expMobCourant" />
+				</div>
+				<div class="col-md-2">
+					<label for="lootMobCourant" type="text">Reward LOOT :</label>
+					<span id="lootMobCourant" name="lootMobCourant" />
+				</div>
+				<div class="col-md-2">
+					<label for="nbKillMobCourant" type="text">Nb Kill :</label>
+					<span id="nbKillMobCourant" name="nbKillMobCourant" />
+				</div>
+			</div>
+
+			<div class ="row" id="weapons">
+				<div class="col-md-offset-1 col-md-11">
+					<h3>Armes</h3>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-offset-1 col-md-4">
+					<button id="weapon0" type="button" class="btn btn-sm btn-primary disabled hidden"></button>
+				</div>
+				<div class="col-md-4">
+					<button id="qw0" type="button" class="btn btn-sm btn-primary disabled hidden"></button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-4">
+					<button id="weapon1" type="button" class="btn btn-sm btn-primary disabled hidden"></button>
+				</div>
+				<div class="col-md-4">
+					<button id="qw1" type="button" class="btn btn-sm btn-primary disabled hidden"></button>
+				</div>
+			</div>
+
+			<div class="row" id="spells">
+				<div class="col-md-offset-1 col-md-12">
+					<h3>Sorts</h3>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-offset-1 col-md-4">
+					<button id="spell0" type="button" class="btn btn-sm btn-primary disabled hidden"></button>
+				</div>
+				<div class="col-md-24">
+					<button id="qs0" type="button" class="btn btn-sm btn-primary disabled hidden"></button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-4">
+					<button id="spell1" type="button" class="btn btn-sm btn-primary disabled hidden"></button>
+				</div>
+				<div class="col-md-4">
+					<button id="qs1" type="button" class="btn btn-sm btn-primary disabled hidden"></button>
+				</div>
+			</div>
+
+		</div>
+
+	</section>
+</body>
+</html>
